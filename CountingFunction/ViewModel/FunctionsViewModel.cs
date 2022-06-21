@@ -11,7 +11,12 @@ namespace CountingFunction
 {
     public class FunctionsViewModel : INotifyPropertyChanged
     {
+        #region Properties
+
         private FunctionInfo _SelectedFunctionInfo;
+        /// <summary>
+        /// Данное поле хранит информацию о выбранной функции из списка функций.
+        /// </summary>
         public FunctionInfo SelectedFunctionInfo
         {
             get { return _SelectedFunctionInfo; }
@@ -23,8 +28,17 @@ namespace CountingFunction
             }
         }
         private Result _SelectedTable;
+        /// <summary>
+        /// Данное поле хранит информацию о выбранной функции из списка функций, обеспечивая доступ к ней без объекта класса.
+        /// </summary>
         public static FunctionInfo SelectedFunctionInfoStatic;
+        /// <summary>
+        /// Данное поле хранит информацию о выбранной строке таблицы, обеспечиваю доступ к ней без объекта класса.
+        /// </summary>
         public static Result SelectedTableStatic;
+        /// <summary>
+        /// Данное поле хранит информацию о выбранной строке таблицы.
+        /// </summary>
         public Result SelectedTable
         {
             get { return _SelectedTable; }
@@ -35,15 +49,35 @@ namespace CountingFunction
                 OnPropertyChanged("SelectedTable");
             }
         }
+        /// <summary>
+        /// Данная коллекция содержит список всех функций, которые отображаются в списке.
+        /// </summary>
         public ObservableCollection<FunctionInfo> FunctionInfos { get; set; }
+        /// <summary>
+        /// Данная коллекция содержит список всех строк, которые отображаются в таблице.
+        /// </summary>
         public ObservableCollection<Result> Results { get; set; }
+        /// <summary>
+        /// Данное событие обеспечивает динамическое изменение состояния объекта.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Конструктор по умолчанию, генерирующий коллекции с определенными по умолчанию функциями и строками таблицы.
+        /// </summary>
         public FunctionsViewModel()
         {
             FunctionInfos = FunctionInfo.GetFunctionInfo();
             Results = Result.GetResults();
         }
+        /// <summary>
+        /// Функция для подсчёта f(x,y).
+        /// </summary>
+        /// <param name="func">Выбранная функция в приложении.</param>
+        /// <param name="table">Выбранная строка таблицы в приложении.</param>
         public static void Count(FunctionInfo func, Result table)
         {
             if (func == null || table == null)
@@ -71,6 +105,10 @@ namespace CountingFunction
                     break;
             }
         }
+        /// <summary>
+        /// Функция, изменяющая состояние отображения и вызывающая подсчёт текущего f(x,y).
+        /// </summary>
+        /// <param name="prop">Информация о параметре, который был изменен.</param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
@@ -79,5 +117,7 @@ namespace CountingFunction
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion
     }
 }

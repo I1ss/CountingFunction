@@ -11,7 +11,12 @@ namespace CountingFunction
 {
     public class FunctionInfo : INotifyPropertyChanged
     {
+        #region Properties
+
         private int _a { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении а.
+        /// </summary>
         public int a
         {
             get { return _a; }
@@ -23,6 +28,9 @@ namespace CountingFunction
         }
 
         private int _b { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении b.
+        /// </summary>
         public int b
         {
             get { return _b; }
@@ -34,6 +42,9 @@ namespace CountingFunction
         }
 
         private int[] _c { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значениях c для всего типа функции.
+        /// </summary>
         public int[] c
         {
             get { return _c; }
@@ -43,8 +54,10 @@ namespace CountingFunction
                 OnPropertyChanged("c");
             }
         }
-
         private int _CurrentC { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении с, выбранного на данный момент.
+        /// </summary>
         public int CurrentC
         {
             get { return _CurrentC; }
@@ -56,6 +69,9 @@ namespace CountingFunction
         }
 
         private string _Function { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию об аналитическом виде функции.
+        /// </summary>
         public string Function
         {
             get { return _Function; }
@@ -66,6 +82,9 @@ namespace CountingFunction
             }
         }
         private string _FunctionName { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о названии функции.
+        /// </summary>
         public string FunctionName
         {
             get { return _FunctionName; }
@@ -75,8 +94,17 @@ namespace CountingFunction
                 OnPropertyChanged("FunctionName");
             }
         }
-
+        /// <summary>
+        /// Данное событие обеспечивает динамическое изменение состояния объекта.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+        #region Methods
+        /// <summary>
+        /// Функция, изменяющая состояние отображения и вызывающая подсчёт текущего f(x,y).
+        /// </summary>
+        /// <param name="prop">Информация о параметре, который был изменен.</param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
@@ -85,7 +113,10 @@ namespace CountingFunction
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
-
+        /// <summary>
+        /// Метод, генерирующий список с заполненными по умолчанию элементами.
+        /// </summary>
+        /// <returns>Возвращает список с заполненными по умолчанию элементами.</returns>
         public static ObservableCollection<FunctionInfo> GetFunctionInfo()
         {
             ObservableCollection<FunctionInfo> result = new ObservableCollection<FunctionInfo>
@@ -98,5 +129,7 @@ namespace CountingFunction
             };
             return result;
         }
+
+        #endregion
     }
 }

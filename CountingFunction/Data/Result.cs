@@ -11,7 +11,12 @@ namespace CountingFunction
 {
     public class Result : INotifyPropertyChanged
     {
+        #region Properties
+
         private int _x { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении x.
+        /// </summary>
         public int x
         {
             get { return _x; }
@@ -23,6 +28,9 @@ namespace CountingFunction
         }
 
         private int _y { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении y.
+        /// </summary>
         public int y
         {
             get { return _y; }
@@ -34,6 +42,9 @@ namespace CountingFunction
         }
 
         private double _fxy { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении f(x,y).
+        /// </summary>
         public double fxy
         {
             get { return _fxy; }
@@ -43,14 +54,28 @@ namespace CountingFunction
                 OnPropertyChanged("fxy");
             }
         }
+        /// <summary>
+        /// Данное событие обеспечивает динамическое изменение состояния объекта.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Метод, генерирующий список с заполненными по умолчанию элементами.
+        /// </summary>
+        /// <returns>Возвращает список с заполненными по умолчанию элементами.</returns>
         public static ObservableCollection<Result> GetResults()
         {
             ObservableCollection<Result> result = new ObservableCollection<Result>();
             return result;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Функция, изменяющая состояние отображения и вызывающая подсчёт текущего f(x,y).
+        /// </summary>
+        /// <param name="prop">Информация о параметре, который был изменен.</param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
@@ -62,5 +87,7 @@ namespace CountingFunction
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion
     }
 }
