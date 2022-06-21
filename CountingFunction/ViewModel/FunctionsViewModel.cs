@@ -87,19 +87,19 @@ namespace CountingFunction
             switch (func.FunctionName)
             {
                 case ("Линейная"):
-                    table.fxy = func.a * table.x + func.b * Math.Pow(table.y, 0) + func.CurrentC;
+                    table.Fxy = func.A * table.X + func.B * Math.Pow(table.Y, 0) + func.CurrentC;
                     break;
                 case ("Квадратичная"):
-                    table.fxy = func.a * Math.Pow(table.x, 2) + func.b * Math.Pow(table.y, 1) + func.CurrentC;
+                    table.Fxy = func.A * Math.Pow(table.X, 2) + func.B * Math.Pow(table.Y, 1) + func.CurrentC;
                     break;
                 case ("Кубическая"):
-                    table.fxy = func.a * Math.Pow(table.x, 3) + func.b * Math.Pow(table.y, 2) + func.CurrentC;
+                    table.Fxy = func.A * Math.Pow(table.X, 3) + func.B * Math.Pow(table.Y, 2) + func.CurrentC;
                     break;
                 case ("4-ой степени"):
-                    table.fxy = func.a * Math.Pow(table.x, 4) + func.b * Math.Pow(table.y, 3) + func.CurrentC;
+                    table.Fxy = func.A * Math.Pow(table.X, 4) + func.B * Math.Pow(table.Y, 3) + func.CurrentC;
                     break;
                 case ("5-ой степени"):
-                    table.fxy = func.a * Math.Pow(table.x, 5) + func.b * Math.Pow(table.y, 4) + func.CurrentC;
+                    table.Fxy = func.A * Math.Pow(table.X, 5) + func.B * Math.Pow(table.Y, 4) + func.CurrentC;
                     break;
                 default:
                     break;

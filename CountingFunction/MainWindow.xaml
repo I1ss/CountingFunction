@@ -35,17 +35,17 @@
             <StackPanel DataContext="{Binding SelectedFunctionInfo}">
                 <TextBlock Text="Выбранный элемент:"  />
                 <TextBlock Text="Введите коэффициент а" />
-                <TextBox Text="{Binding a, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=250}" />
                 <TextBlock Text="Введите коэффициент b" />
-                <TextBox Text="{Binding b, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=250}" />
                 <TextBlock Text="Выберите коэффициент c" />
-                <ComboBox ItemsSource="{Binding Path=c, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=CurrentC}" />
+                <ComboBox ItemsSource="{Binding Path=C, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=CurrentC}" />
             </StackPanel>
             <DataGrid AutoGenerateColumns="false" HorizontalAlignment="Left" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedTable}" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxHeight="275">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=x}" Header="x" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding Path=y}" Header="y" Width="*" />
-                    <DataGridTextColumn Binding="{Binding Path=fxy}" Header="fxy" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=X, Delay=150}" Header="x" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=Y, Delay=150}" Header="y" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Path=Fxy}" Header="f(x,y)" Width="*" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

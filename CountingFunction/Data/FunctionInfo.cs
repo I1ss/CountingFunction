@@ -13,52 +13,52 @@ namespace CountingFunction
     {
         #region Properties
 
-        private int _a { get; set; }
+        private double _A { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении а.
         /// </summary>
-        public int a
+        public double A
         {
-            get { return _a; }
+            get { return _A; }
             set
             {
-                _a = value;
+                _A = value;
                 OnPropertyChanged("a");
             }
         }
 
-        private int _b { get; set; }
+        private double _B { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении b.
         /// </summary>
-        public int b
+        public double B
         {
-            get { return _b; }
+            get { return _B; }
             set
             {
-                _b = value;
+                _B = value;
                 OnPropertyChanged("b");
             }
         }
 
-        private int[] _c { get; set; }
+        private double[] _C { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значениях c для всего типа функции.
         /// </summary>
-        public int[] c
+        public double[] C
         {
-            get { return _c; }
+            get { return _C; }
             set
             {
-                _c = value;
+                _C = value;
                 OnPropertyChanged("c");
             }
         }
-        private int _CurrentC { get; set; }
+        private double _CurrentC { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении с, выбранного на данный момент.
         /// </summary>
-        public int CurrentC
+        public double CurrentC
         {
             get { return _CurrentC; }
             set
@@ -121,11 +121,11 @@ namespace CountingFunction
         {
             ObservableCollection<FunctionInfo> result = new ObservableCollection<FunctionInfo>
             {
-                new FunctionInfo() { _Function = "f(x,y) = ax¹+by⁰+c", _FunctionName = "Линейная", _a = 1, _b = 1, _c = new int[]{1, 2, 3, 4, 5 }, _CurrentC = 1 },
-                new FunctionInfo() { _Function = "f(x,y) = ax²+by¹+c", _FunctionName = "Квадратичная", _a = 2, _b = 2, _c = new int[]{10, 20, 30, 40, 50 }, _CurrentC = 10},
-                new FunctionInfo() { _Function = "f(x,y) = ax³+by²+c", _FunctionName = "Кубическая", _a = 3, _b = 3, _c = new int[]{100, 200, 300, 400, 500 }, _CurrentC = 100},
-                new FunctionInfo() { _Function = "f(x,y) = ax⁴+by³+c", _FunctionName = "4-ой степени", _a = 4, _b = 4, _c = new int[]{1000, 2000, 3000, 4000, 5000 }, _CurrentC = 1000},
-                new FunctionInfo() { _Function = "f(x,y) = ax⁵+by⁴+c", _FunctionName = "5-ой степени", _a = 5, _b = 5, _c = new int[]{10000, 20000, 30000, 40000, 50000 }, _CurrentC = 10000}
+                new FunctionInfo() { _Function = "f(x,y) = ax¹+by⁰+c", _FunctionName = "Линейная", _A = 1, _B = 1, _C = new double[]{1, 2, 3, 4, 5 }, _CurrentC = 1 },
+                new FunctionInfo() { _Function = "f(x,y) = ax²+by¹+c", _FunctionName = "Квадратичная", _A = 1, _B = 1, _C = new double[]{10, 20, 30, 40, 50 }, _CurrentC = 10},
+                new FunctionInfo() { _Function = "f(x,y) = ax³+by²+c", _FunctionName = "Кубическая", _A = 1, _B = 1, _C = new double[]{100, 200, 300, 400, 500 }, _CurrentC = 100},
+                new FunctionInfo() { _Function = "f(x,y) = ax⁴+by³+c", _FunctionName = "4-ой степени", _A = 1, _B = 1, _C = new double[]{1000, 2000, 3000, 4000, 5000 }, _CurrentC = 1000},
+                new FunctionInfo() { _Function = "f(x,y) = ax⁵+by⁴+c", _FunctionName = "5-ой степени", _A = 1, _B = 1, _C = new double[]{10000, 20000, 30000, 40000, 50000 }, _CurrentC = 10000}
             };
             return result;
         }

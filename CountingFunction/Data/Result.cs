@@ -13,44 +13,44 @@ namespace CountingFunction
     {
         #region Properties
 
-        private int _x { get; set; }
+        private double _X { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении x.
         /// </summary>
-        public int x
+        public double X
         {
-            get { return _x; }
+            get { return _X; }
             set
             {
-                _x = value;
+                _X = value;
                 OnPropertyChanged("x");
             }
         }
 
-        private int _y { get; set; }
+        private double _Y { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении y.
         /// </summary>
-        public int y
+        public double Y
         {
-            get { return _y; }
+            get { return _Y; }
             set
             {
-                _y = value;
+                _Y = value;
                 OnPropertyChanged("y");
             }
         }
 
-        private double _fxy { get; set; }
+        private double _Fxy { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении f(x,y).
         /// </summary>
-        public double fxy
+        public double Fxy
         {
-            get { return _fxy; }
+            get { return _Fxy; }
             set
             {
-                _fxy = value;
+                _Fxy = value;
                 OnPropertyChanged("fxy");
             }
         }
