@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CountingFunction"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Counting Functions" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.8*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" ItemsSource="{Binding FunctionInfos}"
+                 SelectedItem="{Binding SelectedFunctionInfo}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="{Binding Path=FunctionName}" />
+                        <TextBlock Text="{Binding Path=Function}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <StackPanel DataContext="{Binding SelectedFunctionInfo}">
+                <TextBlock Text="Выбранный элемент:"  />
+                <TextBlock Text="Введите коэффициент а" />
+                <TextBox Text="{Binding a, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Введите коэффициент b" />
+                <TextBox Text="{Binding b, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Выберите коэффициент c" />
+                <ComboBox ItemsSource="{Binding Path=c, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=CurrentC}" />
+            </StackPanel>
+            <DataGrid AutoGenerateColumns="false" HorizontalAlignment="Left" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedTable}" VerticalAlignment="Top" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=x}" Header="x" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=y}" Header="y" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Path=fxy}" Header="fxy" Width="*" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Window>

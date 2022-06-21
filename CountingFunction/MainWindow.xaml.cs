@@ -23,6 +23,7 @@ namespace CountingFunction
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new FunctionsViewModel();
         }
     }
 }
