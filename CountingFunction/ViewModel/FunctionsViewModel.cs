@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CountingFunction
 {
@@ -28,14 +24,10 @@ namespace CountingFunction
             }
         }
         private Result _SelectedTable;
-        /// <summary>
-        /// Данное поле хранит информацию о выбранной функции из списка функций, обеспечивая доступ к ней без объекта класса.
-        /// </summary>
-        public static FunctionInfo SelectedFunctionInfoStatic;
-        /// <summary>
-        /// Данное поле хранит информацию о выбранной строке таблицы, обеспечиваю доступ к ней без объекта класса.
-        /// </summary>
-        public static Result SelectedTableStatic;
+        
+        private static FunctionInfo SelectedFunctionInfoStatic;
+        
+        private static Result SelectedTableStatic;
         /// <summary>
         /// Данное поле хранит информацию о выбранной строке таблицы.
         /// </summary>
@@ -116,6 +108,20 @@ namespace CountingFunction
                 Count(SelectedFunctionInfo, SelectedTable);
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
+        }
+        /// <summary>
+        /// Данная функция возвращает информацию о выбранной функции из списка функций, обеспечивая доступ к ней без объекта класса.
+        /// </summary>
+        public static FunctionInfo GetSelectedFunctionInfoStatic()
+        {
+            return SelectedFunctionInfoStatic;
+        }
+        /// <summary>
+        /// Данная функция хранит информацию о выбранной строке таблицы, обеспечиваю доступ к ней без объекта класса.
+        /// </summary>
+        public static Result GetSelectedTableStatic()
+        {
+            return SelectedTableStatic;
         }
 
         #endregion
