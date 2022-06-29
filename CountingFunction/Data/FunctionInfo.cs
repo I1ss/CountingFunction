@@ -1,13 +1,16 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CountingFunction
 {
-    public class FunctionInfo : INotifyPropertyChanged
+    public class FunctionInfo
     {
-        #region Properties
-
         private double _A { get; set; }
         /// <summary>
         /// Данное поле хранит информацию о значении а.
@@ -18,7 +21,6 @@ namespace CountingFunction
             set
             {
                 _A = value;
-                OnPropertyChanged("a");
             }
         }
 
@@ -32,7 +34,6 @@ namespace CountingFunction
             set
             {
                 _B = value;
-                OnPropertyChanged("b");
             }
         }
 
@@ -46,7 +47,6 @@ namespace CountingFunction
             set
             {
                 _C = value;
-                OnPropertyChanged("c");
             }
         }
         private double _CurrentC { get; set; }
@@ -59,7 +59,6 @@ namespace CountingFunction
             set
             {
                 _CurrentC = value;
-                OnPropertyChanged("CurrentC");
             }
         }
 
@@ -73,7 +72,6 @@ namespace CountingFunction
             set
             {
                 _Function = value;
-                OnPropertyChanged("Function");
             }
         }
         private string _FunctionName { get; set; }
@@ -86,35 +84,42 @@ namespace CountingFunction
             set
             {
                 _FunctionName = value;
-                OnPropertyChanged("FunctionName");
             }
         }
-        /// <summary>
-        /// Данное событие обеспечивает динамическое изменение состояния объекта.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        #endregion
-        #region Methods
-        /// <summary>
-        /// Функция, изменяющая состояние отображения и вызывающая подсчёт текущего f(x,y).
-        /// </summary>
-        /// <param name="prop">Информация о параметре, который был изменен.</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public double Count(Result table)
         {
-            if (PropertyChanged != null)
+            if (this == null || table == null)
             {
-                FunctionsViewModel.Count(this, FunctionsViewModel.GetSelectedTableStatic());
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+                return 0;
             }
+            Console.WriteLine("StartCount");
+            switch (FunctionName)
+            {
+                case ("Линейная"):
+                    table.Fxy = A * table.X + B * Math.Pow(table.Y, 0) + CurrentC;
+                    break;
+                case ("Квадратичная"):
+                    table.Fxy = A * Math.Pow(table.X, 2) + B * Math.Pow(table.Y, 1) + CurrentC;
+                    break;
+                case ("Кубическая"):
+                    table.Fxy = A * Math.Pow(table.X, 3) + B * Math.Pow(table.Y, 2) + CurrentC;
+                    break;
+                case ("4-ой степени"):
+                    table.Fxy = A * Math.Pow(table.X, 4) + B * Math.Pow(table.Y, 3) + CurrentC;
+                    break;
+                case ("5-ой степени"):
+                    table.Fxy = A * Math.Pow(table.X, 5) + B * Math.Pow(table.Y, 4) + CurrentC;
+                    break;
+                default:
+                    break;
+            }
+            return table.Fxy;
         }
-        /// <summary>
-        /// Метод, генерирующий список с заполненными по умолчанию элементами.
-        /// </summary>
-        /// <returns>Возвращает список с заполненными по умолчанию элементами.</returns>
-        public static ObservableCollection<FunctionInfo> GetFunctionInfo()
+
+        public static FunctionInfo[] GetFunctions()
         {
-            ObservableCollection<FunctionInfo> result = new ObservableCollection<FunctionInfo>
+            FunctionInfo[] result = new FunctionInfo[]
             {
                 new FunctionInfo() { _Function = "f(x,y) = ax¹+by⁰+c", _FunctionName = "Линейная", _A = 1, _B = 1, _C = new double[]{1, 2, 3, 4, 5 }, _CurrentC = 1 },
                 new FunctionInfo() { _Function = "f(x,y) = ax²+by¹+c", _FunctionName = "Квадратичная", _A = 1, _B = 1, _C = new double[]{10, 20, 30, 40, 50 }, _CurrentC = 10},
@@ -124,7 +129,5 @@ namespace CountingFunction
             };
             return result;
         }
-
-        #endregion
     }
 }
