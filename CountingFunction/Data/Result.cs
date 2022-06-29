@@ -1,51 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace CountingFunction
 {
     public class Result
     {
-        private double _X { get; set; }
-
+        #region Properties
+        private double _x { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении x.
+        /// </summary>
         public double X
         {
-            get { return _X; }
+            get { return _x; }
             set
             {
-                _X = value;
+                _x = value;
             }
         }
 
-        private double _Y { get; set; }
+        private double _y { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении y.
+        /// </summary>
         public double Y
         {
-            get { return _Y; }
+            get { return _y; }
             set
             {
-                _Y = value;
+                _y = value;
             }
         }
-
-        private double _Fxy { get; set; }
+        /// <summary>
+        /// Данное поле хранит информацию о значении f(x, y).
+        /// </summary>
+        private double _fxy { get; set; }
         public double Fxy
         {
-            get { return _Fxy; }
+            get { return _fxy; }
             set
             {
-                _Fxy = value;
+                _fxy = value;
             }
         }
 
-        public static ObservableCollection<Result> GetResults()
-        {
-            ObservableCollection<Result> result = new ObservableCollection<Result>();
-            return result;
-        }
+        #endregion
     }
 }

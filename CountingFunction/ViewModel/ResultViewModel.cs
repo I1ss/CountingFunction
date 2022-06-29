@@ -2,13 +2,16 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Data;
 
 namespace CountingFunction
 {
     public class ResultViewModel : DependencyObject, INotifyPropertyChanged
     {
+        #region Properties
         private FunctionInfo _function = new FunctionInfo();
+        /// <summary>
+        /// Данное поле содержит структуру, содержащую информацию об a, b, c, current c (текущее выбранное значение c).
+        /// </summary>
         public FunctionInfo Function
         {
             get { return _function; }
@@ -20,6 +23,9 @@ namespace CountingFunction
         }
 
         private Result _self = new Result();
+        /// <summary>
+        /// Данное поле содержит структуру, содержащую информацию о x, y, f(x,y).
+        /// </summary>
         public Result Self
         {
             get { return _self; }
@@ -29,6 +35,9 @@ namespace CountingFunction
                 OnPropertyChanged("Self");
             }
         }
+        /// <summary>
+        /// Данное поле содержит информацию о x.
+        /// </summary>
         public double X
         {
             get { return Self.X; }
@@ -38,7 +47,9 @@ namespace CountingFunction
                 OnPropertyChanged("X");
             }
         }
-
+        /// <summary>
+        /// Данное поле содержит информацию о y.
+        /// </summary>
         public double Y
         {
             get { return Self.Y; }
@@ -48,7 +59,9 @@ namespace CountingFunction
                 OnPropertyChanged("Y");
             }
         }
-
+        /// <summary>
+        /// Данное поле содержит информацию о f(x,y).
+        /// </summary>
         public double Fxy
         {
             get { return Self.Fxy; }
@@ -58,7 +71,17 @@ namespace CountingFunction
                 OnPropertyChanged("fxy");
             }
         }
-
+        /// <summary>
+        /// Данное событие обеспечивает динамическое изменение состояния объекта.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+        #region Methods
+        /// <summary>
+        /// Данная функция будет обновлять значения используемых/выбранных таблицы и списка и на основе этого рассчитывать f(x,y).
+        /// </summary>
+        /// <param name="example">Данное поле содержит структуру, содержащую информацию о x, y, f(x,y), а также содержит текущий Result.</param>
+        /// <param name="result">Данное поле содержит структуру, содержащую информацию об a, b, c, current c (текущее выбранное значение c).</param>
         public void Update(ResultViewModel example, FunctionInfo function)
         {
             if (example == null || function == null)
@@ -72,12 +95,12 @@ namespace CountingFunction
             this.Fxy = example.Fxy;
             OnPropertyChanged("Update");
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// Функция, изменяющая состояние отображения и вызывающая подсчёт текущего f(x,y).
+        /// </summary>
+        /// <param name="prop">Информация о параметре, который был изменен.</param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            Console.WriteLine(prop);
             if (prop != "fxy" && Function != null)
             {
                 this.Fxy = Function.Count(Self);
@@ -87,5 +110,6 @@ namespace CountingFunction
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+        #endregion
     }
 }
