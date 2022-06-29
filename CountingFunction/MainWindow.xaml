@@ -36,16 +36,16 @@
             <StackPanel DataContext="{Binding FunctionViewModel}">
                 <TextBlock Text="Выбранный элемент:"  />
                 <TextBlock Text="Введите коэффициент а" />
-                <TextBox Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=250}"/>
+                <TextBox Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=250}" PreviewTextInput="TextBox_PreviewTextInput"/>
                 <TextBlock Text="Введите коэффициент b" />
-                <TextBox Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=250}"/>
+                <TextBox Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=250}" PreviewTextInput="TextBox_PreviewTextInput"/>
                 <TextBlock Text="Выберите коэффициент c" />
                 <ComboBox ItemsSource="{Binding C}" SelectedItem="{Binding CurrentC, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
-            <DataGrid AutoGenerateColumns="false" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult}" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxHeight="275">
+            <DataGrid AutoGenerateColumns="false" PreviewTextInput="TextBox_PreviewTextInput" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult}" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxHeight="275">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=X, UpdateSourceTrigger=PropertyChanged, Delay=150}" Header="x" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=X, UpdateSourceTrigger=PropertyChanged, Delay=150}" Header="x" Width="*" />
                     <DataGridTextColumn Binding="{Binding Path=Y, UpdateSourceTrigger=PropertyChanged, Delay=150}" Header="y" Width="*" />
                     <DataGridTextColumn Binding="{Binding Path=Fxy}" Header="fxy" Width="*" IsReadOnly="True" />
                 </DataGrid.Columns>

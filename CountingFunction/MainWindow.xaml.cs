@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace CountingFunction
 {
@@ -11,6 +13,11 @@ namespace CountingFunction
         {
             InitializeComponent();
             DataContext = new FunctionsViewModel();
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs textBox)
+        {
+            textBox.Handled = !(Char.IsDigit(textBox.Text, 0)) && !textBox.Text.Contains(".");
         }
     }
 }
